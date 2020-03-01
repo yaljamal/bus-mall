@@ -60,10 +60,7 @@ left.setAttribute('alt',leftRandom.name);
 center.setAttribute('src',centerRandom.url);
 center.setAttribute('alt',centerRandom.name);
 //make sure the random image don't be the same 
-// while(((left.name===right.name) || (left.name===center.name))||(right.name === center.name))
-// {   
-//         picRandomProduct();   
-// }
+
 }
 // make objects 
 for (var i= 0 ; i<product.length ; i++){
