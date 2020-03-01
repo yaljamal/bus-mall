@@ -1,30 +1,30 @@
 var product=[
-    'bag',
-    'banana',
-    'bathroom',
-    'boots',
-    'breakfast',
-    'bubblegum',
-    'chair',
-    'cthulhu',
-    'dog-duck',
-    'dragon',
-    'pen',
-    'pet-sweep',
-    'scissors',
-    'shark',
-    'sweep',
-    'tauntaun',
-    'unicorn',
-    'usb',
-    'water-can',
-    'wine-glass'
+    'bag.jpg',
+    'banana.jpg',
+    'bathroom.jpg',
+    'boots.jpg',
+    'breakfast.jpg',
+    'bubblegum.jpg',
+    'chair.jpg',
+    'cthulhu.jpg',
+    'dog-duck.jpg',
+    'dragon.jpg',
+    'pen.jpg',
+    'pet-sweep.jpg',
+    'scissors.jpg',
+    'shark.jpg',
+    'sweep.png',
+    'tauntaun.jpg',
+    'unicorn.jpg',
+    'usb.gif',
+    'water-can.jpg',
+    'wine-glass.jpg'
 ];//array of product
 var right=document.getElementById("leftProduct");
 var left=document.getElementById("rightProduct");
 var center=document.getElementById("centerProduct");
 var container=document.getElementById("imgContainer");
-var 
+var totalScore=0;
 var productsArry=[];// array with object
 
 // build the construction
@@ -39,7 +39,7 @@ this.name=name;
 // else
 // {this.url=`${this.name}.jpg`;}
 // }`;
-this.url=`img/${name}.jpg`;
+this.url=`img/${name}`;
 productsArry.push(this);
 }
 
@@ -61,23 +61,34 @@ center.setAttribute('src',centerRandom.url);
 center.setAttribute('alt',centerRandom.name);
 
 }
+// make objects 
 for (var i= 0 ; i<product.length ; i++){
     new Products(product[i]);
 }
 picRandomProduct();
 console.log(productsArry);
 
-
+// add event listener
 container.addEventListener('click',function(event){
-if( event.target.id === "leftProduct" || event.target.id === "rightProduct" ||event.target.id === "centerProduct"){
+if( event.target.id === "leftProduct" || event.target.id === "rightProduct" ||(event.target.id === "centerProduct")){
     picRandomProduct();
-
-
+    totalScore++;
+console.log(totalScore);
 }
-});
+if (totalScore === 25){
 
-
-
+    left.remove();
+    right.remove();
+    center.remove();
+    alert(`you Spend so match time on click  Ur click ${totalScore}`);
+}
+//make sure the random image don't be the same 
+// while(((left.name===right.name) || (left.name===center.name))||(right.name === center.name))
+// {   
+//         picRandomProduct();   
+// }
+}
+);
 
 
 // helper function random
