@@ -1,0 +1,25 @@
+header{
+    background-color: #f7dcdc;
+    height: 70px;
+    width: 1080px;
+    margin-top: -22px;
+
+}
+header h1{
+    text-align: center;
+    padding-top: 12px;
+
+}
+#imgContainer{
+    padding-left: 250px;
+    padding-right: 250px;
+}
+img{
+    width: 180px;
+    height: 200px;
+}
+h3{
+    text-align: center;
+    padding-bottom: 20px;
+    color: #499049;
+}
