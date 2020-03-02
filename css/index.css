@@ -33,5 +33,7 @@ h3{
     color: #499049;
 
 }
-h3:hov
+
+h3:hover{
+color: red;
 }
