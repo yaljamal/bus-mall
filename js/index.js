@@ -109,6 +109,10 @@ function clicksImageEvent() {
         alert(`you Spend so match time on click  Ur click ${totalRound}`);
         renderResult();
     }
+    for (var i = 0 ; i<productsArry.length;i++){
+        clickResult.push(productsArry[i].clicks) ;
+
+    }
 
 }
 container.addEventListener('click', clicksImageEvent);
@@ -120,10 +124,10 @@ function renderResult() {
         var liResult = document.createElement('li');
         ulResult.appendChild(liResult);
         liResult.textContent = `${productsArry[i].name} had ${productsArry[i].clicks} click  ${productsArry[i].show} shown `;
-        clickResult.push(productsArry[i].clicks) ;
         
 
     }
+
 
 
 }
