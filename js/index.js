@@ -38,7 +38,7 @@ function Products(name) {
     this.url = `img/${name}`;
     this.clicks = 0;
     this.views = 0;
-    this.show=0;
+    this.show = 0;
     productsArry.push(this);
 }
 console.log(productsArry);
@@ -109,8 +109,8 @@ function clicksImageEvent() {
         alert(`you Spend so match time on click  Ur click ${totalRound}`);
         renderResult();
     }
-    for (var i = 0 ; i<productsArry.length;i++){
-        clickResult.push(productsArry[i].clicks) ;
+    for (var i = 0; i < productsArry.length; i++) {
+        clickResult.push(productsArry[i].clicks);
 
     }
 
@@ -124,18 +124,13 @@ function renderResult() {
         var liResult = document.createElement('li');
         ulResult.appendChild(liResult);
         liResult.textContent = `${productsArry[i].name} had ${productsArry[i].clicks} click  ${productsArry[i].show} shown `;
-        
-
     }
-
-
-
 }
 // helper function random
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-console.log(productsArry) ;
+console.log(productsArry);
 // draw chart 
 var ctx = document.getElementById('chart').getContext('2d');
 var myChart = new Chart(ctx, {
