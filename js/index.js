@@ -26,8 +26,7 @@ var center = document.getElementById("centerProduct");
 var container = document.getElementById("imgContainer");
 var totalRound = 0;
 var productsArry = [];// array with object
-var names = [];// array of names
-var clickResult = [];
+
 var rightRandom, leftRandom, centerRandom;
 
 
@@ -77,11 +76,7 @@ for (var i = 0; i < productImages.length; i++) {
 }
 picRandomProduct();
 console.log(productsArry);
-// make array of names 
-for (var j = 0; j < productsArry.length; j++) {
-    names.push(productsArry[j].name);
-}
-console.log(names);
+
 // add event listener
 function clicksImageEvent() {
 
@@ -109,11 +104,13 @@ function clicksImageEvent() {
         alert(`you Spend so match time on click  Ur click ${totalRound}`);
         renderResult();
     }
-    for (var i = 0; i < productsArry.length; i++) {
-        clickResult.push(productsArry[i].clicks);
-
-    }
-
+    renderChart();
+    // for (var i = 0; i < productsArry.length; i++) {
+    //     if (productsArry[i].clicks === 1)
+    //         clickResult.push(productsArry[i].clicks);
+    
+    // }
+    // console.log(clickResult);
 }
 container.addEventListener('click', clicksImageEvent);
 // print the result in table 
@@ -126,48 +123,59 @@ function renderResult() {
         liResult.textContent = `${productsArry[i].name} had ${productsArry[i].clicks} click  ${productsArry[i].show} shown `;
     }
 }
+
 // helper function random
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 console.log(productsArry);
+
 // draw chart 
-var ctx = document.getElementById('chart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: names,//for x accesses
-        datasets: [{
-            label: '# of Votes',
-            data: clickResult,//for y accesses
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
+function renderChart(){
+// make array of names 
+var names = [];// array of names
+var clickResult = [];
+for (var j = 0; j < productsArry.length; j++) {
+    names.push(productsArry[j].name);
+    clickResult.push(productsArry[j].clicks);
+}
+    var ctx = document.getElementById('chart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: names,
+            datasets: [{
+                label: '# of Votes',
+                data: clickResult,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
             }]
         },
-        responsive: true,
-        maintainAspectRatio: false,
-    }
-});
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+    });
+}
