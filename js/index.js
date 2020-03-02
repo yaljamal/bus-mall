@@ -104,9 +104,9 @@ function clicksImageEvent() {
     if (event.target.id === "centerProduct") {
         centerRandom.clicks++;
     }
-    if (totalRound === 25) {
+    if (totalRound === 26) {
         container.removeEventListener('click', clicksImageEvent);
-        alert(`you Spend so match time on click  Ur click ${totalRound}`);
+        alert(`you Spend so match time on click  Ur click ${totalRound-1}`);
         renderResult();
     }
 
