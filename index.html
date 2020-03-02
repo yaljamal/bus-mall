@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index.css">
-    <title>Bus Mall</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/index.css">
+  <title>Bus Mall</title>
 </head>
+
 <body>
-    <header> 
-        <h1>Welcome To My Buss Mall</h1> 
+  <header>
+    <h1>Welcome To My Buss Mall</h1>
   </header>
   <main>
-    <h3>chose your favorite image  : </h3>
-      <div id="imgContainer">
-        <img src="" alt="" id="leftProduct">
-        <img src="" alt="" id="rightProduct">
-        <img src="" alt="" id="centerProduct">
-      </div>
-      <div>
-          <ul id="totalResult">
-          </ul>
-
-      </div>
+    <h3>chose your favorite image : </h3>
+    <div id="imgContainer">
+      <img src="" alt="" id="leftProduct">
+      <img src="" alt="" id="rightProduct">
+      <img src="" alt="" id="centerProduct">
+    </div>
+    <div>
+      <ul id="totalResult">
+      </ul>
+    </div>
+    <div class="width-fixed">
+      <canvas id="chart" width="400px" height="400px"></canvas>
+    </div>
   </main>
   <footer>
-      
+
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="js/index.js"></script>
 </body>
+
 </html>
