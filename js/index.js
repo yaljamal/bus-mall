@@ -27,7 +27,6 @@ var container = document.getElementById("imgContainer");
 var totalRound = 0;
 var productsArry = [];// array with object
 var names = [];// array of names
-var clickResult = [];
 var rightRandom, leftRandom, centerRandom;
 var noRepeat = [];
 
@@ -41,8 +40,26 @@ function Products(name) {
     this.views = 0;
     this.show = 0;
     productsArry.push(this);
+    Products.clickArryData.push(this);
 }
+Products.clickArryData = [];
+
 console.log(productsArry);
+function setItem() {
+    var setProductShow = JSON.stringify(productsArry);
+    localStorage.setItem("showItems ", setProductShow);
+    localStorage.setItem("clickItems ", setProductClick);
+}
+function getItem() {
+
+    var getProductShow = localStorage.getItem("showItems ");
+    Products.showArry = JSON.parse(getProductShow);
+    var getProductClick = localStorage.getItem("clickItems ");
+    Products.showArry = JSON.parse(getProductClick);
+    console.log(getProductShow);
+}
+getItem();
+
 
 
 // to pic randomly image 
@@ -51,7 +68,6 @@ leftRandom = productsArry[randomNumber(0, productsArry.length - 1)];
 centerRandom = productsArry[randomNumber(0, productsArry.length - 1)];
 
 function picRandomProduct() {
-
     // to make imge no repeat in the same render and no repeat in next loop 
     while (leftRandom === rightRandom || leftRandom === centerRandom || rightRandom === centerRandom || noRepeat.includes(rightRandom) || noRepeat.includes(leftRandom) || noRepeat.includes(centerRandom)) {
         rightRandom = productsArry[randomNumber(0, productsArry.length - 1)];
@@ -74,12 +90,12 @@ function picRandomProduct() {
     center.setAttribute('src', centerRandom.url);
     center.setAttribute('alt', centerRandom.name);
     //make sure the random image don't be the same 
-
-
 }
 // make objects 
 for (var i = 0; i < productImages.length; i++) {
     new Products(productImages[i]);
+    // setItem();
+
 }
 picRandomProduct();
 console.log(productsArry);
@@ -122,10 +138,14 @@ function votesImageEvent(event) {
         chartRender();
 
     }
+    setItem();
+
 
 }
-// print the result in table 
 
+
+
+// print the result in list 
 function renderResult() {
     var ulResult = document.getElementById("totalResult");
     for (var i = 0; i < productImages.length; i++) {
@@ -161,23 +181,23 @@ function chartRender() {
         data: {
             labels: imagesNamesArr,//for x accesses
             datasets: [
-            {
-                label: '# of Votes',
-                data: numClicksArr,
-                backgroundColor:'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            },
-            {
-                label: '# of Views',
-                data: numViewsArr,
-                backgroundColor:'rgba(255, 220, 132, 0.5)',
-                borderColor: 'rgba(255, 150, 250, 0)',
-                borderWidth: 1,
-                type:'bar',
-                labels:imagesNamesArr
-            }
-        ]
+                {
+                    label: '# of Votes',
+                    data: numClicksArr,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: '# of Views',
+                    data: numViewsArr,
+                    backgroundColor: 'rgba(255, 220, 132, 0.5)',
+                    borderColor: 'rgba(255, 150, 250, 0)',
+                    borderWidth: 1,
+                    type: 'bar',
+                    labels: imagesNamesArr
+                }
+            ]
         },
         options: {
             scales: {
