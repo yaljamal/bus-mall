@@ -190,6 +190,6 @@ function chartRender() {
             responsive: true,
             maintainAspectRatio: false,
         }
-    })
+    });
 
 }
