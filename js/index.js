@@ -40,17 +40,25 @@ function Products(name) {
     this.views = 0;
     this.show = 0;
     productsArry.push(this);
-    Products.clickArryData,push(this);
+    Products.clickArryData.push(this);
 }
-Products.clickArryData=[];
+Products.clickArryData = [];
 
 console.log(productsArry);
 function setItem() {
-var clickdata = JSON.stringify(Products.clickArryData);
- localStorage.setItem('clickes', clickdata);
- console.log(clickdata);
+    var setProductShow = JSON.stringify(productsArry);
+    localStorage.setItem("showItems ", setProductShow);
+    localStorage.setItem("clickItems ", setProductClick);
 }
+function getItem() {
 
+    var getProductShow = localStorage.getItem("showItems ");
+    Products.showArry = JSON.parse(getProductShow);
+    var getProductClick = localStorage.getItem("clickItems ");
+    Products.showArry = JSON.parse(getProductClick);
+    console.log(getProductShow);
+}
+getItem();
 
 
 
@@ -86,6 +94,7 @@ function picRandomProduct() {
 // make objects 
 for (var i = 0; i < productImages.length; i++) {
     new Products(productImages[i]);
+    // setItem();
 
 }
 picRandomProduct();
@@ -172,23 +181,23 @@ function chartRender() {
         data: {
             labels: imagesNamesArr,//for x accesses
             datasets: [
-            {
-                label: '# of Votes',
-                data: numClicksArr,
-                backgroundColor:'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            },
-            {
-                label: '# of Views',
-                data: numViewsArr,
-                backgroundColor:'rgba(255, 220, 132, 0.5)',
-                borderColor: 'rgba(255, 150, 250, 0)',
-                borderWidth: 1,
-                type:'bar',
-                labels:imagesNamesArr
-            }
-        ]
+                {
+                    label: '# of Votes',
+                    data: numClicksArr,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: '# of Views',
+                    data: numViewsArr,
+                    backgroundColor: 'rgba(255, 220, 132, 0.5)',
+                    borderColor: 'rgba(255, 150, 250, 0)',
+                    borderWidth: 1,
+                    type: 'bar',
+                    labels: imagesNamesArr
+                }
+            ]
         },
         options: {
             scales: {
