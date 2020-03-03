@@ -26,7 +26,7 @@ var center = document.getElementById("centerProduct");
 var container = document.getElementById("imgContainer");
 var totalRound = 0;
 var productsArry = [];// array with object
-
+var noDoublicatsTowrounds=[];
 var rightRandom, leftRandom, centerRandom;
 
 
@@ -46,7 +46,7 @@ console.log(productsArry);
 // to pic randomly image 
 
 function picRandomProduct() {
-    rightRandom = productsArry[randomNumber(0, productsArry.length - 1)];
+    rightRandom = productsArry[randomNumber(0, productsArry.length - 1)];// we are return object of images 
     leftRandom = productsArry[randomNumber(0, productsArry.length - 1)];
     centerRandom = productsArry[randomNumber(0, productsArry.length - 1)];
     while (leftRandom === rightRandom || leftRandom === centerRandom || rightRandom === centerRandom) {
@@ -54,7 +54,7 @@ function picRandomProduct() {
         leftRandom = productsArry[randomNumber(0, productsArry.length - 1)];
         centerRandom = productsArry[randomNumber(0, productsArry.length - 1)];
     }
-
+    
 
 
     // set attribute for right image 
@@ -74,7 +74,7 @@ function picRandomProduct() {
 for (var i = 0; i < productImages.length; i++) {
     new Products(productImages[i]);
 }
-picRandomProduct();
+picRandomProduct();// to show me the first image 
 console.log(productsArry);
 
 // add event listener
@@ -89,9 +89,9 @@ function clicksImageEvent() {
         // console.log(totalRound);
     }
     // for each time click on left the clicks incriminated
+    // to specify where to click "in image just"
     if (event.target.id === "leftProduct") {
         leftRandom.clicks++;
-
     }
     if (event.target.id === "rightProduct") {
         rightRandom.clicks++;
@@ -105,12 +105,7 @@ function clicksImageEvent() {
         renderResult();
     }
     renderChart();
-    // for (var i = 0; i < productsArry.length; i++) {
-    //     if (productsArry[i].clicks === 1)
-    //         clickResult.push(productsArry[i].clicks);
-    
-    // }
-    // console.log(clickResult);
+  
 }
 container.addEventListener('click', clicksImageEvent);
 // print the result in table 
@@ -131,14 +126,16 @@ function randomNumber(min, max) {
 console.log(productsArry);
 
 // draw chart 
-function renderChart(){
-// make array of names 
-var names = [];// array of names
-var clickResult = [];
-for (var j = 0; j < productsArry.length; j++) {
-    names.push(productsArry[j].name);
-    clickResult.push(productsArry[j].clicks);
-}
+function renderChart() {
+    // make array of names 
+    var names = [];// array of names
+    var clickResult = [];
+    var view=[];
+    for (var j = 0; j < productsArry.length; j++) {
+        names.push(productsArry[j].name);
+        clickResult.push(productsArry[j].clicks);
+        view.push(productsArry[j].show);
+    }
     var ctx = document.getElementById('chart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
@@ -148,20 +145,26 @@ for (var j = 0; j < productsArry.length; j++) {
                 label: '# of Votes',
                 data: clickResult,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
+                    
                     'rgba(255, 159, 64, 0.2)'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
+                  
                     'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            },
+            {
+                label: '# of showa',
+                data: view,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                   
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)'
+
                 ],
                 borderWidth: 1
             }]
