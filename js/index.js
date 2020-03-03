@@ -160,7 +160,8 @@ function chartRender() {
         type: 'bar',
         data: {
             labels: imagesNamesArr,//for x accesses
-            datasets: [{
+            datasets: [
+            {
                 label: '# of Votes',
                 data: numClicksArr,
                 backgroundColor:'rgba(255, 99, 132, 0.2)',
@@ -172,9 +173,10 @@ function chartRender() {
                 data: numViewsArr,
                 backgroundColor:'rgba(255, 220, 132, 0.5)',
                 borderColor: 'rgba(255, 150, 250, 0)',
-                borderWidth: 2
+                borderWidth: 1,
+                type:'bar',
+                labels:imagesNamesArr
             }
-            
         ]
         },
         options: {
