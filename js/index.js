@@ -26,7 +26,8 @@ var center = document.getElementById("centerProduct");
 var container = document.getElementById("imgContainer");
 var totalRound = 0;
 var productsArry = [];// array with object
-var noDoublicatsTowrounds=[];
+var names = [];// array of names
+var clickResult = [];
 var rightRandom, leftRandom, centerRandom;
 var noRepeat = [];
 
@@ -50,24 +51,12 @@ leftRandom = productsArry[randomNumber(0, productsArry.length - 1)];
 centerRandom = productsArry[randomNumber(0, productsArry.length - 1)];
 
 function picRandomProduct() {
-<<<<<<< HEAD
-    rightRandom = productsArry[randomNumber(0, productsArry.length - 1)];// we are return object of images 
-    leftRandom = productsArry[randomNumber(0, productsArry.length - 1)];
-    centerRandom = productsArry[randomNumber(0, productsArry.length - 1)];
-    while (leftRandom === rightRandom || leftRandom === centerRandom || rightRandom === centerRandom) {
-        rightRandom = productsArry[randomNumber(0, productsArry.length - 1)];
-        leftRandom = productsArry[randomNumber(0, productsArry.length - 1)];
-        centerRandom = productsArry[randomNumber(0, productsArry.length - 1)];
-    }
-    
-=======
 
     // to make imge no repeat in the same render and no repeat in next loop 
     while (leftRandom === rightRandom || leftRandom === centerRandom || rightRandom === centerRandom || noRepeat.includes(rightRandom) || noRepeat.includes(leftRandom) || noRepeat.includes(centerRandom)) {
         rightRandom = productsArry[randomNumber(0, productsArry.length - 1)];
         leftRandom = productsArry[randomNumber(0, productsArry.length - 1)];
         centerRandom = productsArry[randomNumber(0, productsArry.length - 1)];
->>>>>>> lab12
 
     }
     noRepeat = [];
@@ -92,35 +81,17 @@ function picRandomProduct() {
 for (var i = 0; i < productImages.length; i++) {
     new Products(productImages[i]);
 }
-picRandomProduct();// to show me the first image 
+picRandomProduct();
 console.log(productsArry);
-<<<<<<< HEAD
-
-=======
 // make array of names 
 for (var j = 0; j < productsArry.length; j++) {
     names.push(productsArry[j].name);
 }
 console.log(names);
 container.addEventListener('click', votesImageEvent);
->>>>>>> lab12
 // add event listener
 function votesImageEvent(event) {
 
-<<<<<<< HEAD
-    if (event.target.id === "leftProduct" || event.target.id === "rightProduct" || (event.target.id === "centerProduct")) {
-        picRandomProduct();
-        totalRound++;
-        leftRandom.show++;
-        rightRandom.show++;
-        centerRandom.show++;
-        // console.log(totalRound);
-    }
-    // for each time click on left the clicks incriminated
-    // to specify where to click "in image just"
-    if (event.target.id === "leftProduct") {
-        leftRandom.clicks++;
-=======
 
     // for each time click on left the votes incriminated
     if (event.target.id === "leftProduct") {
@@ -129,7 +100,6 @@ function votesImageEvent(event) {
         totalRound++;
         picRandomProduct();
 
->>>>>>> lab12
     }
     if (event.target.id === "rightProduct") {
         rightRandom.votes++;
@@ -152,8 +122,7 @@ function votesImageEvent(event) {
         chartRender();
 
     }
-    renderChart();
-  
+
 }
 // print the result in table 
 
@@ -162,33 +131,16 @@ function renderResult() {
     for (var i = 0; i < productImages.length; i++) {
         var liResult = document.createElement('li');
         ulResult.appendChild(liResult);
-<<<<<<< HEAD
-        liResult.textContent = `${productsArry[i].name} had ${productsArry[i].clicks} click  ${productsArry[i].show} shown `;
-=======
         liResult.textContent = `${productsArry[i].name} had ${productsArry[i].votes} click  ${productsArry[i].show} shown `;
         clickResult.push(productsArry[i].votes);
->>>>>>> lab12
     }
 }
-
 // helper function random
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 console.log(productsArry);
 
-<<<<<<< HEAD
-// draw chart 
-function renderChart() {
-    // make array of names 
-    var names = [];// array of names
-    var clickResult = [];
-    var view=[];
-    for (var j = 0; j < productsArry.length; j++) {
-        names.push(productsArry[j].name);
-        clickResult.push(productsArry[j].clicks);
-        view.push(productsArry[j].show);
-=======
 
 // draw chart 
 function chartRender() {
@@ -202,42 +154,11 @@ function chartRender() {
         numClicksArr.push(imgVotes);
         var imgViews = productsArry[i].views;
         numViewsArr.push(imgViews);
->>>>>>> lab12
     }
     var ctx = document.getElementById('chart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-<<<<<<< HEAD
-            labels: names,
-            datasets: [{
-                label: '# of Votes',
-                data: clickResult,
-                backgroundColor: [
-                    
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                  
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            },
-            {
-                label: '# of showa',
-                data: view,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)'
-                   
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)'
-
-                ],
-                borderWidth: 1
-            }]
-=======
             labels: imagesNamesArr,//for x accesses
             datasets: [
             {
@@ -257,7 +178,6 @@ function chartRender() {
                 labels:imagesNamesArr
             }
         ]
->>>>>>> lab12
         },
         options: {
             scales: {
@@ -270,9 +190,6 @@ function chartRender() {
             responsive: true,
             maintainAspectRatio: false,
         }
-    });
-<<<<<<< HEAD
-=======
+    })
 
->>>>>>> lab12
 }
