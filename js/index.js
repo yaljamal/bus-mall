@@ -27,7 +27,6 @@ var container = document.getElementById("imgContainer");
 var totalRound = 0;
 var productsArry = [];// array with object
 var names = [];// array of names
-var clickResult = [];
 var rightRandom, leftRandom, centerRandom;
 var noRepeat = [];
 
@@ -41,8 +40,18 @@ function Products(name) {
     this.views = 0;
     this.show = 0;
     productsArry.push(this);
+    Products.clickArryData,push(this);
 }
+Products.clickArryData=[];
+
 console.log(productsArry);
+function setItem() {
+var clickdata = JSON.stringify(Products.clickArryData);
+ localStorage.setItem('clickes', clickdata);
+ console.log(clickdata);
+}
+
+
 
 
 // to pic randomly image 
@@ -51,7 +60,6 @@ leftRandom = productsArry[randomNumber(0, productsArry.length - 1)];
 centerRandom = productsArry[randomNumber(0, productsArry.length - 1)];
 
 function picRandomProduct() {
-
     // to make imge no repeat in the same render and no repeat in next loop 
     while (leftRandom === rightRandom || leftRandom === centerRandom || rightRandom === centerRandom || noRepeat.includes(rightRandom) || noRepeat.includes(leftRandom) || noRepeat.includes(centerRandom)) {
         rightRandom = productsArry[randomNumber(0, productsArry.length - 1)];
@@ -74,12 +82,11 @@ function picRandomProduct() {
     center.setAttribute('src', centerRandom.url);
     center.setAttribute('alt', centerRandom.name);
     //make sure the random image don't be the same 
-
-
 }
 // make objects 
 for (var i = 0; i < productImages.length; i++) {
     new Products(productImages[i]);
+
 }
 picRandomProduct();
 console.log(productsArry);
@@ -122,10 +129,14 @@ function votesImageEvent(event) {
         chartRender();
 
     }
+    setItem();
+
 
 }
-// print the result in table 
 
+
+
+// print the result in list 
 function renderResult() {
     var ulResult = document.getElementById("totalResult");
     for (var i = 0; i < productImages.length; i++) {
