@@ -57,11 +57,12 @@ function setItem() {
 }
 function getItem() {
     
-    var getProductShow = localStorage.getItem("showItems");
-    Products.showArry = JSON.parse(getProductShow);
-    var getProductClick = localStorage.getItem("clickItems");
-    Products.showArry = JSON.parse(getProductClick);
-    console.log(getProductShow);
+    var getProductShow =JSON.parse(localStorage.getItem("showItems"));
+    if(getProductShow === null )
+    {
+        renderResult();   
+    }
+   
 }
 
 
