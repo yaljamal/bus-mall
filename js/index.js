@@ -38,7 +38,6 @@ function Products(name) {
     this.name = name.split('.')[0];
     this.url = `img/${name}`;
     this.votes = 0;
-    this.views = 0;
     this.show = 0;
     productsArry.push(this);
 }
@@ -48,12 +47,10 @@ console.log(productsArry);
 function setItem() {
 
     var setProductShow = JSON.stringify(productsArry);
-    setProductShow.views+=productsArry.views;
+    setProductShow.show+=productsArry.show;
     var setProductClick = JSON.stringify(productsArry);
     setProductShow.votes+=productsArry.votes;
-    
     localStorage.setItem("showItems", setProductShow);
-    localStorage.setItem("clickItems", setProductClick);
 }
 function getItem() {
     
@@ -175,7 +172,7 @@ function chartRender() {
         imagesNamesArr.push(imgnames);
         var imgVotes = productsArry[i].votes;
         numClicksArr.push(imgVotes);
-        var imgViews = productsArry[i].views;
+        var imgViews = productsArry[i].show;
         numViewsArr.push(imgViews);
     }
     var ctx = document.getElementById('chart').getContext('2d');
